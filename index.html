@@ -17,21 +17,23 @@
     h1 {
       margin-bottom: 10px;
       color: #004d00;
+      font-size: clamp(18px, 4vw, 26px);
     }
 
     #word-list {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 8px;
-      margin-bottom: 15px;
+      gap: 6px;
+      margin-bottom: 10px;
     }
 
     .word {
-      padding: 6px 12px;
-      background: rgba(255,255,255,0.6);
-      border-radius: 8px;
+      padding: 4px 8px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 6px;
       font-weight: bold;
+      font-size: clamp(10px, 2.5vw, 14px);
       color: #003300;
     }
 
@@ -45,22 +47,23 @@
       display: grid;
       grid-template-columns: repeat(20, 1fr);
       gap: 1px;
-      max-width: 95vw;
+      width: 100%;
+      max-width: 500px;
       margin: auto;
       touch-action: none;
     }
 
     .cell {
-      background: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.9);
       aspect-ratio: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: bold;
-      font-size: clamp(10px, 1.8vw, 14px);
+      font-size: clamp(9px, 2vw, 14px);
       border-radius: 4px;
       user-select: none;
-      color: #000000;
+      color: #000;
     }
 
     .selected {
@@ -71,6 +74,17 @@
     .correct {
       background: #00ff88;
       color: #000;
+    }
+
+    /* 📱 MOBILE AJUSTADO PERFEITO */
+    @media (max-width: 600px) {
+      #grid {
+        max-width: 100vw;
+      }
+
+      .cell {
+        font-size: clamp(8px, 2.8vw, 12px);
+      }
     }
   </style>
 </head>
@@ -86,7 +100,7 @@ const words = [
   "JOGO","RAP","MC","BIXINHO","COMIDA"
 ];
 
-const rows = 7;
+const rows = 10;
 const cols = 20;
 const grid = Array.from({ length: rows }, () => Array(cols).fill(""));
 
