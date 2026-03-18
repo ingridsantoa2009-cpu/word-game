@@ -96,8 +96,8 @@
 
 <script>
 const words = [
-  "TESTE","CHATO","AMORA","AMIGO","LEGAL",
-  "JOGO","VIDA","CASA","ABACATE","COMIDA"
+  "TESTE","CHATO","BOBAO","AMIGO","LEGAL",
+  "JOGO","RAPADURA","MASSACRE","BIXINHO","COMIDA"
 ];
 
 const rows = 12;
@@ -184,6 +184,25 @@ function clearSelection() {
 }
 
 function checkWord() {
+  const formed = getWordFromSelection();
+
+  if (words.includes(formed)) {
+    selected.forEach(c => c.classList.add("correct"));
+
+    document.querySelectorAll(".word").forEach(w => {
+      if (w.innerText === formed) w.classList.add("found");
+    });
+
+    // ✅ VERIFICA SE GANHOU
+    const foundWords = document.querySelectorAll(".word.found");
+
+    if (foundWords.length === words.length) {
+      setTimeout(() => {
+        alert("🎉VOCÊ GANHOU!🎉");
+      }, 200);
+    }
+  }
+}
   const formed = getWordFromSelection();
   if (words.includes(formed)) {
     selected.forEach(c => c.classList.add("correct"));
