@@ -8,7 +8,7 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background: #b9f6ca; /* verde claro */
+      background: #b9f6ca;
       margin: 0;
       padding: 10px;
       color: #003300;
@@ -44,21 +44,21 @@
     #grid {
       display: grid;
       grid-template-columns: repeat(15, 1fr);
-      gap: 2px;
+      gap: 1px;
       max-width: 95vw;
       margin: auto;
       touch-action: none;
     }
 
     .cell {
-      background: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.85);
       aspect-ratio: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: bold;
-      font-size: clamp(12px, 2vw, 16px);
-      border-radius: 6px;
+      font-size: clamp(10px, 1.8vw, 14px);
+      border-radius: 4px;
       user-select: none;
       color: #000000;
     }
@@ -72,12 +72,6 @@
       background: #00ff88;
       color: #000;
     }
-
-    @media (max-width: 600px) {
-      #grid {
-        gap: 1px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -88,12 +82,13 @@
 
 <script>
 const words = [
-  "TETEO","CHATO","BOBAO","AMIGO","LEGAL",
-  "JOGO","RAP","MC","BIXINHO","COMIDA"
+  "TESTE","CHATO","DEUS","AMIGO","LEGAL",
+  "JOGO","RATO","VIDA","ANEL","COMIDA"
 ];
 
-const size = 15;
-const grid = Array.from({ length: size }, () => Array(size).fill(""));
+const rows = 10;
+const cols = 15;
+const grid = Array.from({ length: rows }, () => Array(cols).fill(""));
 
 function shuffleArray(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
@@ -107,11 +102,11 @@ shuffleArray(words);
 function placeWord(word) {
   let placed = false;
   while (!placed) {
-    let row = Math.floor(Math.random() * size);
-    let col = Math.floor(Math.random() * size);
+    let row = Math.floor(Math.random() * rows);
+    let col = Math.floor(Math.random() * cols);
     let dir = Math.floor(Math.random() * 2);
 
-    if (dir === 0 && col + word.length <= size) {
+    if (dir === 0 && col + word.length <= cols) {
       let canPlace = true;
       for (let i = 0; i < word.length; i++) {
         if (grid[row][col+i] && grid[row][col+i] !== word[i]) {
@@ -125,7 +120,7 @@ function placeWord(word) {
       }
     }
 
-    if (dir === 1 && row + word.length <= size) {
+    if (dir === 1 && row + word.length <= rows) {
       let canPlace = true;
       for (let i = 0; i < word.length; i++) {
         if (grid[row+i][col] && grid[row+i][col] !== word[i]) {
@@ -144,8 +139,8 @@ function placeWord(word) {
 words.forEach(placeWord);
 
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-for (let r = 0; r < size; r++) {
-  for (let c = 0; c < size; c++) {
+for (let r = 0; r < rows; r++) {
+  for (let c = 0; c < cols; c++) {
     if (!grid[r][c]) {
       grid[r][c] = letters[Math.floor(Math.random() * letters.length)];
     }
@@ -184,8 +179,8 @@ function checkWord() {
   }
 }
 
-for (let r = 0; r < size; r++) {
-  for (let c = 0; c < size; c++) {
+for (let r = 0; r < rows; r++) {
+  for (let c = 0; c < cols; c++) {
     const cell = document.createElement("div");
     cell.className = "cell";
     cell.innerText = grid[r][c];
