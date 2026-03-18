@@ -45,7 +45,7 @@
 
     #grid {
       display: grid;
-      grid-template-columns: repeat(20, 1fr);
+      grid-template-columns: repeat(16, 1fr);
       gap: 1px;
       width: 100%;
       max-width: 500px;
@@ -96,12 +96,12 @@
 
 <script>
 const words = [
-  "TETEO","CHATO","BOBAO","AMIGO","LEGAL",
-  "JOGO","RAP","MC","BIXINHO","COMIDA"
+  "TESTE","CHATO","AMORA","AMIGO","LEGAL",
+  "JOGO","VIDA","CASA","ABACATE","COMIDA"
 ];
 
 const rows = 12;
-const cols = 20;
+const cols = 16;
 const grid = Array.from({ length: rows }, () => Array(cols).fill(""));
 
 function shuffleArray(arr) {
